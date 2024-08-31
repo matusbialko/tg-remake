@@ -1,0 +1,3 @@
+modelClass: App\Tasks\Models\Task
+
+form: $/app/tasks/models/task/fields.yaml

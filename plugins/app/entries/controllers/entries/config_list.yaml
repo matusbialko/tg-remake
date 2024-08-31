@@ -1,0 +1,3 @@
+modelClass: App\Entries\Models\Entry
+
+list: $/app/entries/models/entry/columns.yaml

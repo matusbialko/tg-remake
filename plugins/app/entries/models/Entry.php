@@ -1,22 +1,24 @@
-<?php namespace App\Projects\Models;
+<?php namespace App\Entries\Models;
 
 use Model;
 
 /**
- * Project Model
+ * Entry Model
  */
-class Project extends Model
+class Entry extends Model
 {
     use \October\Rain\Database\Traits\Validation;
 
-    public $table = 'app_projects_projects';
+    public $table = 'app_entries_entries';
 
     protected $fillable = [
-        'name'
+        'time_from',
+        'time_to'
     ];
 
     public $rules = [
-        'name' => 'required|min:1'
+        'time_from' => 'required',
+        'time_to' => 'required'
     ];
 
     protected $casts = [];

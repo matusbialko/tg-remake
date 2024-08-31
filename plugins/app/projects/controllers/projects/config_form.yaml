@@ -1,0 +1,3 @@
+modelClass: App\Projects\Models\Project
+
+form: $/app/projects/models/project/fields.yaml

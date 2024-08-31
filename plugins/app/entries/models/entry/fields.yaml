@@ -1,0 +1,11 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    time_from:
+        label: Time from
+        type: date
+    time_to:
+        label: Time to
+        type: date

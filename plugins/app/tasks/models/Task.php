@@ -1,15 +1,15 @@
-<?php namespace App\Projects\Models;
+<?php namespace App\Tasks\Models;
 
 use Model;
 
 /**
- * Project Model
+ * Task Model
  */
-class Project extends Model
+class Task extends Model
 {
     use \October\Rain\Database\Traits\Validation;
 
-    public $table = 'app_projects_projects';
+    public $table = 'app_tasks_tasks';
 
     protected $fillable = [
         'name'

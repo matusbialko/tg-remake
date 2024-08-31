@@ -1,0 +1,3 @@
+modelClass: App\Projects\Models\Project
+
+list: $/app/projects/models/project/columns.yaml

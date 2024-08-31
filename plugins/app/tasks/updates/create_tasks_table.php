@@ -1,13 +1,13 @@
-<?php namespace App\Projects\Updates;
+<?php namespace App\Tasks\Updates;
 
 use Schema;
 use October\Rain\Database\Updates\Migration;
 
-class CreateProjectsTable extends Migration
+class CreateTasksTable extends Migration
 {
     public function up()
     {
-        Schema::create('app_projects_projects', function ($table) {
+        Schema::create('app_tasks_tasks', function ($table) {
             $table->increments('id');
             $table->string('name');
             $table->timestamps();
@@ -16,6 +16,6 @@ class CreateProjectsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('app_projects_projects');
+        Schema::dropIfExists('app_tasks_tasks');
     }
 }

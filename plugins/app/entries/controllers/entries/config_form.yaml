@@ -1,0 +1,3 @@
+modelClass: App\Entries\Models\Entry
+
+form: $/app/entries/models/entry/fields.yaml

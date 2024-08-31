@@ -7,7 +7,11 @@ columns:
         label: ID
         sortable: true
         type: number
-    name:
-        label: Name
+    time_from:
+        label: Time from
         sortable: true
-        type: text
+        type: date
+    time_to:
+        label: Time to
+        sortable: true
+        type: date

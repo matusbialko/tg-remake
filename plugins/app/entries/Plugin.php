@@ -1,4 +1,4 @@
-<?php namespace App\Projects;
+<?php namespace App\Entries;
 
 use Backend;
 use System\Classes\PluginBase;
@@ -9,7 +9,7 @@ class Plugin extends PluginBase
     public function pluginDetails()
     {
         return [
-            'name'        => 'Projects',
+            'name'        => 'Entries',
             'description' => 'No description provided yet...',
             'author'      => 'App',
             'icon'        => 'icon-leaf'
@@ -24,9 +24,9 @@ class Plugin extends PluginBase
     public function registerPermissions()
     {
         return [
-            'app.projects.projects' => [
-                'tab' => 'Projects',
-                'label' => 'Projects'
+            'app.entries.entries' => [
+                'tab' => 'Entries',
+                'label' => 'Entries'
             ],
         ];
     }
@@ -34,11 +34,11 @@ class Plugin extends PluginBase
     public function registerNavigation()
     {
         return [
-            'projects' => [
-                'label'       => 'Projects',
-                'url'         => Backend::url('app/projects/projects'),
+            'entries' => [
+                'label'       => 'Entries',
+                'url'         => Backend::url('app/entries/entries'),
                 'icon'        => 'icon-leaf',
-                'permissions' => ['app.projects.*'],
+                'permissions' => ['app.entries.*'],
                 'order'       => 500,
             ],
         ];
