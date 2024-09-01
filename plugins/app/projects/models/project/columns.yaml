@@ -11,3 +11,6 @@ columns:
         label: Name
         sortable: true
         type: text
+    isClosed:
+        label: Closed
+        type: switch

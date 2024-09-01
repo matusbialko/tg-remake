@@ -8,8 +8,9 @@ class ProjectResource extends JsonResource {
     public function toArray($request) {
         return [
             "id" => $this->id,
-            //"user" => new UserResource($this->user),
             "name" => $this->name,
+            //"user" => new UserResource($this->user),
+            "isClosed" => $this->isClosed,
         ];
     }
     

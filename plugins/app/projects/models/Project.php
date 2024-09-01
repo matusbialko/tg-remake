@@ -12,7 +12,9 @@ class Project extends Model
     public $table = 'app_projects_projects';
 
     protected $fillable = [
-        'name'
+        'id',
+        'name',
+        'isClosed'
     ];
 
     public $rules = [

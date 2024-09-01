@@ -14,10 +14,30 @@ class ProjectController extends Controller
     public function post_project()
     {
         $data = request()->all();
+        $data['isClosed'] = false;
         //$user = auth()->user();
         //$data['name'] = $user->name;
         //$data['user_id'] = $user->id;
+        
+        $data['id'] = count(Project::all());
         $project = Project::create($data);
+        return $project;
         return new ProjectResource($project);
+    }
+    public function edit_project() 
+    {
+        $data = request()->all();
+        Project::findOrFail($data['id']);
+        $project = Project::where('id', $data['id'])->get();
+        if ($project[0]['isClosed'] == true) die('Cannot edit closed project.');
+        Project::where('id', $data['id'])->update(['name' => $data['name']]);
+    }
+    public function close_project() 
+    {
+        $data = request()->all();
+        Project::findOrFail($data['id']);
+        $project = Project::where('id', $data['id'])->get();
+        if ($project[0]['isClosed'] == true) die('Project is already closed.');
+        Project::where('id', $data['id'])->update(['isClosed' => true]);
     }
 }
