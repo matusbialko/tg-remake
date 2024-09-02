@@ -21,7 +21,6 @@ class ProjectController extends Controller
         
         $data['id'] = count(Project::all());
         $project = Project::create($data);
-        return $project;
         return new ProjectResource($project);
     }
     public function edit_project() 
