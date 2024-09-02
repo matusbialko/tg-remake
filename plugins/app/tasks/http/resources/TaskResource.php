@@ -8,8 +8,10 @@ class TaskResource extends JsonResource {
     public function toArray($request) {
         return [
             "id" => $this->id,
-            //"user" => new UserResource($this->user),
+            "project_id" => $this->project_id,
             "name" => $this->name,
+            //"user" => new UserResource($this->user),
+            "isCompleted" => $this->isCompleted,
         ];
     }
     

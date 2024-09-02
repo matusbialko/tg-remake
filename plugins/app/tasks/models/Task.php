@@ -12,10 +12,14 @@ class Task extends Model
     public $table = 'app_tasks_tasks';
 
     protected $fillable = [
-        'name'
+        'id',
+        'project_id',
+        'name',
+        'isCompleted'
     ];
 
     public $rules = [
+        'project_id' => 'required',
         'name' => 'required|min:1'
     ];
 

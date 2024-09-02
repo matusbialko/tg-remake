@@ -7,7 +7,14 @@ columns:
         label: ID
         sortable: true
         type: number
+    project_id:
+        label: Project ID
+        sortable: true
+        type: number
     name:
         label: Name
         sortable: true
         type: text
+    isCompleted:
+        label: Completed
+        type: switch
