@@ -21,6 +21,11 @@ class Entry extends Model
         'time_to' => 'required'
     ];
 
+    public $belongsTo = [
+        //'user' => ['RainLab\User\Models\User'],
+        'task' => ['App\Tasks\Models\Task']
+    ];
+
     protected $casts = [];
 
     protected $dates = [

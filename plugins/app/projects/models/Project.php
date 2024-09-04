@@ -17,6 +17,14 @@ class Project extends Model
         'isClosed'
     ];
 
+    /* public $belongsTo = [
+        'user' => ['RainLab\User\Models\User']
+    ]; */
+
+    public $hasMany = [
+        'tasks' => ['App\Tasks\Models\Task']
+    ];
+
     public $rules = [
         'name' => 'required|min:1'
     ];

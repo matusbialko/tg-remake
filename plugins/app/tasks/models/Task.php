@@ -18,6 +18,15 @@ class Task extends Model
         'isCompleted'
     ];
 
+    public $belongsTo = [
+        //'user' => ['RainLab\User\Models\User'],
+        'project' => ['App\Projects\Models\Project']
+    ];
+
+    public $hasMany = [
+        'entries' => ['App\Entries\Models\Entry']
+    ];
+
     public $rules = [
         'project_id' => 'required',
         'name' => 'required|min:1'
