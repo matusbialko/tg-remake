@@ -29,7 +29,11 @@ class ProjectController extends Controller
         Project::findOrFail($data['id']);
         $project = Project::where('id', $data['id'])->get();
         if ($project[0]['isClosed']) die('Cannot edit closed project.');
-        Project::where('id', $data['id'])->update(['name' => $data['name']]);
+        foreach($data as $key => $value) {
+            if ($key != 'id') 
+                Project::where('id', $data['id'])->update([$key => $value]);
+        }
+        return new ProjectResource(Project::where('id', $data['id'])->get()[0]);
     }
     public function close_project() 
     {
@@ -38,5 +42,6 @@ class ProjectController extends Controller
         $project = Project::where('id', $data['id'])->get();
         if ($project[0]['isClosed']) die('Project is already closed.');
         Project::where('id', $data['id'])->update(['isClosed' => true]);
+        return new ProjectResource(Project::where('id', $data['id'])->get()[0]);
     }
 }
