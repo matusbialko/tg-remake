@@ -14,7 +14,10 @@ class Project extends Model
     protected $fillable = [
         'id',
         'name',
-        'isClosed'
+        'isClosed',
+        'customer',
+        'projectManager',
+        'list'
     ];
 
     /* public $belongsTo = [
@@ -26,7 +29,10 @@ class Project extends Model
     ];
 
     public $rules = [
-        'name' => 'required|min:1'
+        'name' => 'required|min:1',
+        'customer' => 'required|min:1',
+        'projectManager' => 'required|min:1',
+        'list' => 'required|min:1'
     ];
 
     protected $casts = [];

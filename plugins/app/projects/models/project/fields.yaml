@@ -6,3 +6,12 @@ fields:
     name:
         label: Name
         type: text
+    customer:
+        label: Customer
+        type: text
+    projectManager:
+        label: Project manager
+        type: text
+    list:
+        label: List
+        type: text

@@ -11,6 +11,18 @@ columns:
         label: Name
         sortable: true
         type: text
+    customer:
+        label: Customer
+        sortable: true
+        type: text
+    projectManager:
+        label: Project manager
+        sortable: true
+        type: text
+    list:
+        label: List
+        sortable: true
+        type: text
     isClosed:
         label: Closed
         type: switch
