@@ -9,8 +9,8 @@ class CreateEntriesTable extends Migration
     {
         Schema::create('app_entries_entries', function ($table) {
             $table->increments('id');
-            $table->string('time_from');
-            $table->string('time_to');
+            $table->string('time_start');
+            $table->string('time_end');
             $table->timestamps();
         });
     }

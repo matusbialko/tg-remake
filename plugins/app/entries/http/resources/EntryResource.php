@@ -9,8 +9,10 @@ class EntryResource extends JsonResource {
         return [
             "id" => $this->id,
             //"user" => new UserResource($this->user),
-            "time_from" => $this->time_from,
-            "time_to" => $this->time_to,
+            "task_id" => $this->task_id,
+            "time_start" => $this->time_start,
+            "time_end" => $this->time_end,
+            "isActive" => $this->isActive
         ];
     }
     

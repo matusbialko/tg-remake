@@ -7,11 +7,19 @@ columns:
         label: ID
         sortable: true
         type: number
-    time_from:
+    task_id:
+        label: Task ID
+        sortable: true
+        type: number
+    time_start:
         label: Time from
         sortable: true
         type: date
-    time_to:
+    time_end:
         label: Time to
         sortable: true
         type: date
+    isActive:
+        label: Is active
+        sortable: true
+        type: switch

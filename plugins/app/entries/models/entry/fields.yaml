@@ -3,9 +3,12 @@
 # ===================================
 
 fields:
-    time_from:
+    task_id:
+        label: Task id
+        type: number
+    time_start:
         label: Time from
         type: date
-    time_to:
+    time_end:
         label: Time to
         type: date

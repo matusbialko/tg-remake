@@ -12,13 +12,17 @@ class Entry extends Model
     public $table = 'app_entries_entries';
 
     protected $fillable = [
-        'time_from',
-        'time_to'
+        'id',
+        'time_start',
+        'time_end',
+        'task_id',
+        'isActive'
     ];
 
     public $rules = [
-        'time_from' => 'required',
-        'time_to' => 'required'
+        'time_start' => 'required',
+        'task_id' => 'required',
+        'isActive' => 'required'
     ];
 
     public $belongsTo = [
