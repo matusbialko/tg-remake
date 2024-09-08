@@ -8,10 +8,12 @@ fields:
         type: text
     customer:
         label: Customer
-        type: text
+        type: recordfinder
+        list: ~/plugins/app/projects/models/project/columns.yaml
     projectManager:
         label: Project manager
-        type: text
+        type: recordfinder
+        list: ~/plugins/app/projects/models/project/columns.yaml
     list:
         label: List
         type: text
