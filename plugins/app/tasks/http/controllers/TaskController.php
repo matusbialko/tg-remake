@@ -7,12 +7,12 @@ use App\Projects\Models\Project;
 
 class TaskController extends Controller
 {
-    public function get_tasks()
+    public function tasksIndex()
     {
         //$tasks = Task::where('user_id', auth()->user()->id)->get();
         return TaskResource::collection(Task::all());
     }
-    public function post_task()
+    public function taskCreate()
     {
         $data = request()->all();
         Project::findOrFail($data['project_id']);
@@ -28,13 +28,13 @@ class TaskController extends Controller
         $task = Task::create($data);
         return new TaskResource($task);
     }
-    public function edit_task() 
+    public function taskUpdate() 
     {
         $data = request()->all();
         Task::findOrFail($data['id']);
         Task::where('id', $data['id'])->update(['name' => $data['name']]);
     }
-    public function switch_complete_task() 
+    public function taskComplete() 
     {
         $data = request()->all();
         Task::findOrFail($data['id']);

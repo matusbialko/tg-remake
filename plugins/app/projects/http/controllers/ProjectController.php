@@ -6,12 +6,12 @@ use App\Projects\Http\Resources\ProjectResource;
 
 class ProjectController extends Controller
 {
-    public function get_projects()
+    public function projectsIndex()
     {
         //$projects = Project::where('user_id', auth()->user()->id)->get();
         return ProjectResource::collection(Project::all());
     }
-    public function post_project()
+    public function projectCreate()
     {
         $data = request()->all();
         $data['isClosed'] = false;
@@ -23,7 +23,7 @@ class ProjectController extends Controller
         $project = Project::create($data);
         return new ProjectResource($project);
     }
-    public function edit_project() 
+    public function projectUpdate() 
     {
         $data = request()->all();
         Project::findOrFail($data['id']);
@@ -35,7 +35,7 @@ class ProjectController extends Controller
         }
         return new ProjectResource(Project::where('id', $data['id'])->get()[0]);
     }
-    public function close_project() 
+    public function projectClose() 
     {
         $data = request()->all();
         Project::findOrFail($data['id']);
