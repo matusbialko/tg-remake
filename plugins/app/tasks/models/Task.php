@@ -15,6 +15,7 @@ class Task extends Model
         'id',
         'project_id',
         'name',
+        'total_time',
         'isCompleted'
     ];
 

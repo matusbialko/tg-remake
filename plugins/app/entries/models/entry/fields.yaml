@@ -8,7 +8,10 @@ fields:
         type: number
     time_start:
         label: Time from
-        type: date
+        type: timestamp
     time_end:
         label: Time to
-        type: date
+        type: timestamp
+    tracked_time:
+        label: tracked_time
+        type: string

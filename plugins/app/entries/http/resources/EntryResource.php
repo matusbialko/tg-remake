@@ -12,6 +12,7 @@ class EntryResource extends JsonResource {
             "task_id" => $this->task_id,
             "time_start" => $this->time_start,
             "time_end" => $this->time_end,
+            "tracked_time" => $this->tracked_time,
             "isActive" => $this->isActive
         ];
     }

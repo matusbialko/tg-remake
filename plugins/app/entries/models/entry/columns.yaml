@@ -14,11 +14,11 @@ columns:
     time_start:
         label: Time from
         sortable: true
-        type: date
+        type: timestamp
     time_end:
         label: Time to
         sortable: true
-        type: date
+        type: timestamp
     isActive:
         label: Is active
         sortable: true

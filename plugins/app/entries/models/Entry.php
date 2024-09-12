@@ -15,6 +15,7 @@ class Entry extends Model
         'id',
         'time_start',
         'time_end',
+        'tracked_time',
         'task_id',
         'isActive'
     ];
