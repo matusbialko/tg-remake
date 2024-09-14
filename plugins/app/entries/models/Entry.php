@@ -1,6 +1,7 @@
 <?php namespace App\Entries\Models;
 
 use Model;
+use DateTime;
 
 /**
  * Entry Model
@@ -22,8 +23,7 @@ class Entry extends Model
 
     public $rules = [
         'time_start' => 'required',
-        'task_id' => 'required',
-        'isActive' => 'required'
+        'task_id' => 'required'
     ];
 
     public $belongsTo = [
@@ -38,7 +38,17 @@ class Entry extends Model
         'updated_at'
     ];
 
-    /* public $belongsTo = [
-        'user' => ['RainLab\User\Models\User']
-    ]; */
+    public function getTrackedTimeAttribute() {
+        if (!isset($this->time_end)) return '00:00:00';
+        $start = new DateTime($this->time_start);
+        $end = new DateTime($this->time_end);
+        $diffObject = $start->diff($end);
+        $daysDiff = $diffObject->format('%a');
+        return $diffObject->format('%H') + ($daysDiff * 24 ) . ':' . $diffObject->format('%I') . ':' . $diffObject->format('%S');
+    }
+
+    public function getIsActiveAttribute() {
+        if (isset($this->time_start) && isset($this->time_end)) return false;
+        return true;
+    }
 }

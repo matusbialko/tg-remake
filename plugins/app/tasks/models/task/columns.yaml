@@ -15,6 +15,10 @@ columns:
         label: Name
         sortable: true
         type: text
+    total_time: 
+        label: Total time
+        sortable: true
+        type: text
     isCompleted:
         label: Completed
         type: switch

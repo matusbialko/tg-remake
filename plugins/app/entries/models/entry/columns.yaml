@@ -14,11 +14,15 @@ columns:
     time_start:
         label: Time from
         sortable: true
-        type: timestamp
+        type: datetime
     time_end:
         label: Time to
         sortable: true
-        type: timestamp
+        type: datetime
+    tracked_time:
+        label: Tracked Time
+        sortable: true
+        type: text
     isActive:
         label: Is active
         sortable: true

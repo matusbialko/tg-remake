@@ -40,7 +40,13 @@ class Task extends Model
         'updated_at'
     ];
 
-    /* public $belongsTo = [
-        'user' => ['RainLab\User\Models\User']
-    ]; */
+    public function getTotalTimeAttribute() {
+        $totalSeconds = 0;
+        for ($i = 0; $i < count($this->entries); $i++) {
+            list($hours, $minutes, $seconds) = explode(":", $this->entries[$i]['tracked_time']);
+            $timeInSeconds = ($hours * 3600) + ($minutes * 60) + $seconds;
+            $totalSeconds += $timeInSeconds;
+        }
+        return gmdate("H:i:s", $totalSeconds);
+    }
 }
