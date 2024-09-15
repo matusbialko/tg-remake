@@ -12,7 +12,7 @@ class ProjectResource extends JsonResource {
             "customer" => $this->customer,
             "projectManager" => $this->projectManager,
             "list" => $this->list,
-            //"user" => new UserResource($this->user),
+            "user" => new UserResource($this->user),
             "isClosed" => $this->isClosed,
         ];
     }

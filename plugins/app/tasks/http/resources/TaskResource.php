@@ -10,7 +10,7 @@ class TaskResource extends JsonResource {
             "id" => $this->id,
             "project_id" => $this->project_id,
             "name" => $this->name,
-            //"user" => new UserResource($this->user),
+            "user" => new UserResource($this->user),
             "isCompleted" => $this->isCompleted,
             "total_time" => $this->total_time
         ];

@@ -13,6 +13,7 @@ class Task extends Model
 
     protected $fillable = [
         'id',
+        'user_id',
         'project_id',
         'name',
         'total_time',
@@ -20,7 +21,7 @@ class Task extends Model
     ];
 
     public $belongsTo = [
-        //'user' => ['RainLab\User\Models\User'],
+        'user' => ['RainLab\User\Models\User'],
         'project' => ['App\Projects\Models\Project']
     ];
 

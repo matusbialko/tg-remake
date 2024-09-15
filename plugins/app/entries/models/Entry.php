@@ -14,6 +14,7 @@ class Entry extends Model
 
     protected $fillable = [
         'id',
+        'user_id',
         'time_start',
         'time_end',
         'tracked_time',
@@ -27,7 +28,7 @@ class Entry extends Model
     ];
 
     public $belongsTo = [
-        //'user' => ['RainLab\User\Models\User'],
+        'user' => ['RainLab\User\Models\User'],
         'task' => ['App\Tasks\Models\Task']
     ];
 

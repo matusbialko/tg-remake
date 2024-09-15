@@ -7,6 +7,10 @@ columns:
         label: ID
         sortable: true
         type: number
+    user_id:
+        label: User ID
+        sortable: true
+        type: number
     name:
         label: Name
         sortable: true

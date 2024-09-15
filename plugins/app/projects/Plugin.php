@@ -2,7 +2,7 @@
 
 use Backend;
 use System\Classes\PluginBase;
-//use RainLab\User\Models\User;
+use RainLab\User\Models\User;
 
 class Plugin extends PluginBase
 {
@@ -18,9 +18,9 @@ class Plugin extends PluginBase
 
     public function boot()
     {
-        /* User::extend(function($model){
+        User::extend(function($model){
             $model->hasMany['project'] = ['App\Projects\Models\Project'];
-        }); */
+        });
     }
 
     public function registerPermissions()

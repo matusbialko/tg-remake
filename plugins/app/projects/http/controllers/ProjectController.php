@@ -8,16 +8,15 @@ class ProjectController extends Controller
 {
     public function projectsIndex()
     {
-        //$projects = Project::where('user_id', auth()->user()->id)->get();
-        return ProjectResource::collection(Project::all());
+        $projects = Project::where('user_id', auth()->user()->id)->get();
+        return ProjectResource::collection($projects);
     }
     public function projectCreate()
     {
         $data = request()->all();
         $data['isClosed'] = false;
-        //$user = auth()->user();
-        //$data['name'] = $user->name;
-        //$data['user_id'] = $user->id;
+        $user = auth()->user();
+        $data['user_id'] = $user->id;
         
         $data['id'] = count(Project::all());
         $project = Project::create($data);
@@ -28,6 +27,8 @@ class ProjectController extends Controller
         $data = request()->all();
         Project::findOrFail($data['id']);
         $project = Project::where('id', $data['id'])->get();
+        $user = auth()->user();
+        if ($user['id'] !== $project[0]['user_id']) die('Unauthorized');
         if ($project[0]['isClosed']) die('Cannot edit closed project.');
         foreach($data as $key => $value) {
             if ($key != 'id') 
@@ -40,6 +41,8 @@ class ProjectController extends Controller
         $data = request()->all();
         Project::findOrFail($data['id']);
         $project = Project::where('id', $data['id'])->get();
+        $user = auth()->user();
+        if ($user['id'] !== $project[0]['user_id']) die('Unauthorized');
         if ($project[0]['isClosed']) die('Project is already closed.');
         Project::where('id', $data['id'])->update(['isClosed' => true]);
         return new ProjectResource(Project::where('id', $data['id'])->get()[0]);

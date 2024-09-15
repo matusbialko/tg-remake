@@ -13,6 +13,7 @@ class Project extends Model
 
     protected $fillable = [
         'id',
+        'user_id',
         'name',
         'isClosed',
         'customer',
@@ -20,9 +21,9 @@ class Project extends Model
         'list'
     ];
 
-    /* public $belongsTo = [
+    public $belongsTo = [
         'user' => ['RainLab\User\Models\User']
-    ]; */
+    ];
 
     public $hasMany = [
         'tasks' => ['App\Tasks\Models\Task']
@@ -41,8 +42,4 @@ class Project extends Model
         'created_at',
         'updated_at'
     ];
-
-    /* public $belongsTo = [
-        'user' => ['RainLab\User\Models\User']
-    ]; */
 }

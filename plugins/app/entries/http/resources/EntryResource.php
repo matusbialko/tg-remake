@@ -8,8 +8,8 @@ class EntryResource extends JsonResource {
     public function toArray($request) {
         return [
             "id" => $this->id,
-            //"user" => new UserResource($this->user),
             "task_id" => $this->task_id,
+            "user" => new UserResource($this->user),
             "time_start" => $this->time_start,
             "time_end" => $this->time_end,
             "tracked_time" => $this->tracked_time,
