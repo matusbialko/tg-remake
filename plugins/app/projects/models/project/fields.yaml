@@ -17,3 +17,7 @@ fields:
     list:
         label: List
         type: text
+    partial_test:
+        type: partial
+        path: ~/plugins/app/projects/partials/partial_test.htm
+        label: Partial test

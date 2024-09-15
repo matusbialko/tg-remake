@@ -30,3 +30,7 @@ columns:
     isClosed:
         label: Closed
         type: switch
+    partial_test:
+        type: partial
+        path: ~/plugins/app/projects/partials/partial_test.htm
+        label: Partial test
