@@ -13,7 +13,6 @@ class Entry extends Model
     public $table = 'app_entries_entries';
 
     protected $fillable = [
-        'id',
         'user_id',
         'time_start',
         'time_end',

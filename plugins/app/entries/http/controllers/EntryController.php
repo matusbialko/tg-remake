@@ -19,13 +19,12 @@ class EntryController extends Controller
         $data['user_id'] = $user->id;
 
         Task::findOrFail($data['task_id']);
-        $task = Task::where('id', $data['task_id'])->get();
+        $task = Task::find($data['task_id']);
         $user = auth()->user();
-        if ($user['id'] !== $task[0]['user_id']) die('Unauthorized');
+        if ($user['id'] !== $task['user_id']) die('Unauthorized');
         if (!isset($data['time_start']) && isset($data['time_end'])) die('If end of the entry is set, then beginning must be set too');
         if (!(isset($data['time_start']) && isset($data['time_end']))) $data['time_start'] = now();
-        
-        $data['id'] = count(Entry::all());
+
         $entry = Entry::create($data);
         return new EntryResource($entry);
     }
@@ -33,12 +32,12 @@ class EntryController extends Controller
     {
         $data = request()->all();
         Entry::findOrFail($data['id']);
-        $entry = Entry::where('id', $data['id'])->get();
+        $entry = Entry::find($data['id']);
         $user = auth()->user();
-        if ($user['id'] !== $entry[0]['user_id']) die('Unauthorized');
-        if (!$entry[0]['isActive']) die('Entry is already finished');
-        Entry::where('id', $data['id'])->update([
-            'time_start' => $entry[0]['time_start'],
+        if ($user['id'] !== $entry['user_id']) die('Unauthorized');
+        if (!$entry['isActive']) die('Entry is already finished');
+        Entry::find($data['id'])->update([
+            'time_start' => $entry['time_start'],
             'time_end' => now()
         ]);
         return 'Entry finished';

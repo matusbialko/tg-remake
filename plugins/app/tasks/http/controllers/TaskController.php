@@ -16,16 +16,15 @@ class TaskController extends Controller
     {
         $data = request()->all();
         Project::findOrFail($data['project_id']);
-        $project = Project::where('id', $data['project_id'])->get();
+        $project = Project::find($data['project_id']);
         $user = auth()->user();
-        if ($user['id'] !== $project[0]['user_id']) die('Unauthorized');
-        if ($project[0]['isClosed']) die('Cannot add task to closed project');
+        if ($user['id'] !== $project['user_id']) die('Unauthorized');
+        if ($project['isClosed']) die('Cannot add task to closed project');
 
         $data['isCompleted'] = false;
         $user = auth()->user();
         $data['user_id'] = $user->id;
-        
-        $data['id'] = count(Task::all());
+
         $task = Task::create($data);
         return new TaskResource($task);
     }
@@ -33,22 +32,22 @@ class TaskController extends Controller
     {
         $data = request()->all();
         Task::findOrFail($data['id']);
-        $task = Task::where('id', $data['id'])->get();
+        $task = Task::find($data['id']);
         $user = auth()->user();
-        if ($user['id'] !== $task[0]['user_id']) die('Unauthorized');
-        Task::where('id', $data['id'])->update(['name' => $data['name']]);
+        if ($user['id'] !== $task['user_id']) die('Unauthorized');
+        Task::find($data['id'])->update(['name' => $data['name']]);
     }
     public function taskComplete() 
     {
         $data = request()->all();
         Task::findOrFail($data['id']);
-        $task = Task::where('id', $data['id'])->get();
+        $task = Task::find($data['id']);
         $user = auth()->user();
-        if ($user['id'] !== $task[0]['user_id']) die('Unauthorized');
-        if ($task[0]['isCompleted']) {
-            Task::where('id', $data['id'])->update(['isCompleted' => false]);
+        if ($user['id'] !== $task['user_id']) die('Unauthorized');
+        if ($task['isCompleted']) {
+            Task::find($data['id'])->update(['isCompleted' => false]);
         } else {
-            Task::where('id', $data['id'])->update(['isCompleted' => true]);
+            Task::find($data['id'])->update(['isCompleted' => true]);
         }
     }
 }

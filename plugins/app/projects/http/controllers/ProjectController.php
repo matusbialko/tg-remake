@@ -17,34 +17,33 @@ class ProjectController extends Controller
         $data['isClosed'] = false;
         $user = auth()->user();
         $data['user_id'] = $user->id;
-        
-        $data['id'] = count(Project::all());
+
         $project = Project::create($data);
         return new ProjectResource($project);
     }
-    public function projectUpdate() 
+    public function projectUpdate()
     {
         $data = request()->all();
         Project::findOrFail($data['id']);
-        $project = Project::where('id', $data['id'])->get();
+        $project = Project::find($data['id']);
         $user = auth()->user();
-        if ($user['id'] !== $project[0]['user_id']) die('Unauthorized');
-        if ($project[0]['isClosed']) die('Cannot edit closed project.');
+        if ($user['id'] !== $project['user_id']) die('Unauthorized');
+        if ($project['isClosed']) die('Cannot edit closed project.');
         foreach($data as $key => $value) {
             if ($key != 'id') 
-                Project::where('id', $data['id'])->update([$key => $value]);
+                Project::find($data['id'])->update([$key => $value]);
         }
-        return new ProjectResource(Project::where('id', $data['id'])->get()[0]);
+        return new ProjectResource(Project::find($data['id']));
     }
-    public function projectClose() 
+    public function projectClose()
     {
         $data = request()->all();
         Project::findOrFail($data['id']);
-        $project = Project::where('id', $data['id'])->get();
+        $project = Project::find($data['id']);
         $user = auth()->user();
-        if ($user['id'] !== $project[0]['user_id']) die('Unauthorized');
-        if ($project[0]['isClosed']) die('Project is already closed.');
-        Project::where('id', $data['id'])->update(['isClosed' => true]);
-        return new ProjectResource(Project::where('id', $data['id'])->get()[0]);
+        if ($user['id'] !== $project['user_id']) die('Unauthorized');
+        if ($project['isClosed']) die('Project is already closed.');
+        Project::find($data['id'])->update(['isClosed' => true]);
+        return new ProjectResource(Project::find($data['id']));
     }
 }

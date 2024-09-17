@@ -12,7 +12,6 @@ class Task extends Model
     public $table = 'app_tasks_tasks';
 
     protected $fillable = [
-        'id',
         'user_id',
         'project_id',
         'name',

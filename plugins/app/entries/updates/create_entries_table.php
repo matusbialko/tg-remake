@@ -2,6 +2,7 @@
 
 use Schema;
 use October\Rain\Database\Updates\Migration;
+use DB;
 
 class CreateEntriesTable extends Migration
 {
@@ -9,8 +10,12 @@ class CreateEntriesTable extends Migration
     {
         Schema::create('app_entries_entries', function ($table) {
             $table->increments('id');
-            $table->string('time_start');
-            $table->string('time_end');
+            $table->integer('user_id');
+            $table->integer('task_id');
+            $table->boolean('isActive');
+            $table->string('tracked_time')->default('00:00:00');
+            $table->timestamp('time_start')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('time_end')->nullable()->default(null);
             $table->timestamps();
         });
     }

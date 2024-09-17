@@ -9,7 +9,11 @@ class CreateTasksTable extends Migration
     {
         Schema::create('app_tasks_tasks', function ($table) {
             $table->increments('id');
+            $table->integer('user_id');
+            $table->integer('project_id');
             $table->string('name');
+            $table->boolean('isCompleted');
+            $table->string('total_time')->default('00:00:00');
             $table->timestamps();
         });
     }

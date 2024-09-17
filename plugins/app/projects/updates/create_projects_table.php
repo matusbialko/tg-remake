@@ -9,7 +9,12 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('app_projects_projects', function ($table) {
             $table->increments('id');
+            $table->integer('user_id');
             $table->string('name');
+            $table->string('customer');
+            $table->string('projectManager');
+            $table->string('list');
+            $table->boolean('isClosed');
             $table->timestamps();
         });
     }
