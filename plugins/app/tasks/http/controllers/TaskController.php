@@ -1,5 +1,6 @@
 <?php namespace App\Tasks\Http\Controllers;
 
+use Exception;
 use Illuminate\Routing\Controller;
 use App\Tasks\Models\Task;
 use App\Tasks\Http\Resources\TaskResource;
@@ -18,8 +19,8 @@ class TaskController extends Controller
         Project::findOrFail($data['project_id']);
         $project = Project::find($data['project_id']);
         $user = auth()->user();
-        if ($user['id'] !== $project->user_id) die('Unauthorized');
-        if ($project->isClosed) die('Cannot add task to closed project');
+        if ($user['id'] !== $project->user_id) throw new Exception('Unauthorized');
+        if ($project->isClosed) throw new Exception('Cannot add task to closed project');
 
         $task = new Task();
         $task->fill($data);
@@ -36,7 +37,7 @@ class TaskController extends Controller
         Task::findOrFail($data['id']);
         $task = Task::find($data['id']);
         $user = auth()->user();
-        if ($user['id'] !== $task->user_id) die('Unauthorized');
+        if ($user['id'] !== $task->user_id) throw new Exception('Unauthorized');
         $task->name = $data['name'];
         $task->save();
     }
@@ -46,7 +47,7 @@ class TaskController extends Controller
         Task::findOrFail($data['id']);
         $task = Task::find($data['id']);
         $user = auth()->user();
-        if ($user['id'] !== $task->user_id) die('Unauthorized');
+        if ($user['id'] !== $task->user_id) throw new Exception('Unauthorized');
         if ($task->isCompleted) {
             $task->isCompleted = false;
         } else {

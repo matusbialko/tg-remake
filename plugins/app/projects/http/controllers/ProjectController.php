@@ -1,5 +1,6 @@
 <?php namespace App\Projects\Http\Controllers;
 
+use Exception;
 use Illuminate\Routing\Controller;
 use App\Projects\Models\Project;
 use App\Projects\Http\Resources\ProjectResource;
@@ -28,8 +29,8 @@ class ProjectController extends Controller
         Project::findOrFail($data['id']);
         $project = Project::find($data['id']);
         $user = auth()->user();
-        if ($user['id'] !== $project->user_id) die('Unauthorized');
-        if ($project->isClosed) die('Cannot edit closed project.');
+        if ($user['id'] !== $project->user_id) throw new Exception('Unauthorized');
+        if ($project->isClosed) throw new Exception('Cannot edit closed project.');
         foreach($data as $key => $value) {
             if ($key != 'id') $project->update([$key => $value]);
         }
@@ -41,8 +42,8 @@ class ProjectController extends Controller
         Project::findOrFail($data['id']);
         $project = Project::find($data['id']);
         $user = auth()->user();
-        if ($user['id'] !== $project->user_id) die('Unauthorized');
-        if ($project->isClosed) die('Project is already closed.');
+        if ($user['id'] !== $project->user_id) throw new Exception('Unauthorized');
+        if ($project->isClosed) throw new Exception('Project is already closed.');
         $project->isClosed = true;
         $project->save();
         return ProjectResource::make($project);
