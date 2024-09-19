@@ -20,7 +20,7 @@ class ProjectController extends Controller
         $user = auth()->user();
         $project->user_id = $user->id;
         $project->save();
-        return new ProjectResource($project);
+        return ProjectResource::make($project);
     }
     public function projectUpdate()
     {
@@ -33,7 +33,7 @@ class ProjectController extends Controller
         foreach($data as $key => $value) {
             if ($key != 'id') $project->update([$key => $value]);
         }
-        return new ProjectResource($project);
+        return ProjectResource::make($project);
     }
     public function projectClose()
     {
@@ -45,6 +45,6 @@ class ProjectController extends Controller
         if ($project->isClosed) die('Project is already closed.');
         $project->isClosed = true;
         $project->save();
-        return new ProjectResource($project);
+        return ProjectResource::make($project);
     }
 }

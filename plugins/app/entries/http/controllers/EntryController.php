@@ -29,7 +29,7 @@ class EntryController extends Controller
         if (!(isset($entry->time_start) && isset($entry->time_end))) $entry->time_start = now();
 
         $entry->save();
-        return new EntryResource($entry);
+        return EntryResource::make($entry);
     }
     public function entryFinish()
     {

@@ -28,7 +28,7 @@ class TaskController extends Controller
         $task->user_id = $user->id;
 
         $task->save();
-        return new TaskResource($task);
+        return TaskResource::make($task);
     }
     public function taskUpdate() 
     {
