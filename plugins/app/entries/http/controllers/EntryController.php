@@ -9,23 +9,26 @@ class EntryController extends Controller
 {
     public function entriesIndex()
     {
-        $entry = Entry::where('user_id', auth()->user()->id)->get();
-        return EntryResource::collection($entry);
+        $entries = Entry::where('user_id', auth()->user()->id)->get();
+        return EntryResource::collection($entries);
     }
     public function entryCreate()
     {
         $data = request()->all();
-        $user = auth()->user();
-        $data['user_id'] = $user->id;
-
         Task::findOrFail($data['task_id']);
-        $task = Task::find($data['task_id']);
+
+        $user = auth()->user();
+        $entry = new Entry();
+        $entry->fill($data);
+        $entry->user_id = $user->id;
+
+        $task = Task::find($entry->task_id);
         $user = auth()->user();
         if ($user['id'] !== $task['user_id']) die('Unauthorized');
-        if (!isset($data['time_start']) && isset($data['time_end'])) die('If end of the entry is set, then beginning must be set too');
-        if (!(isset($data['time_start']) && isset($data['time_end']))) $data['time_start'] = now();
+        if (!isset($entry->time_start) && isset($entry->time_end)) die('If end of the entry is set, then beginning must be set too');
+        if (!(isset($entry->time_start) && isset($entry->time_end))) $entry->time_start = now();
 
-        $entry = Entry::create($data);
+        $entry->save();
         return new EntryResource($entry);
     }
     public function entryFinish()
@@ -36,10 +39,8 @@ class EntryController extends Controller
         $user = auth()->user();
         if ($user['id'] !== $entry['user_id']) die('Unauthorized');
         if (!$entry['isActive']) die('Entry is already finished');
-        Entry::find($data['id'])->update([
-            'time_start' => $entry['time_start'],
-            'time_end' => now()
-        ]);
+        $entry->time_end = now();
+        $entry->save();
         return 'Entry finished';
     }
 }

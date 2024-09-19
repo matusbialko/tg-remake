@@ -14,11 +14,12 @@ class ProjectController extends Controller
     public function projectCreate()
     {
         $data = request()->all();
-        $data['isClosed'] = false;
+        $project = new Project();
+        $project->fill($data);
+        $project->isClosed = false;
         $user = auth()->user();
-        $data['user_id'] = $user->id;
-
-        $project = Project::create($data);
+        $project->user_id = $user->id;
+        $project->save();
         return new ProjectResource($project);
     }
     public function projectUpdate()
@@ -27,13 +28,12 @@ class ProjectController extends Controller
         Project::findOrFail($data['id']);
         $project = Project::find($data['id']);
         $user = auth()->user();
-        if ($user['id'] !== $project['user_id']) die('Unauthorized');
-        if ($project['isClosed']) die('Cannot edit closed project.');
+        if ($user['id'] !== $project->user_id) die('Unauthorized');
+        if ($project->isClosed) die('Cannot edit closed project.');
         foreach($data as $key => $value) {
-            if ($key != 'id') 
-                Project::find($data['id'])->update([$key => $value]);
+            if ($key != 'id') $project->update([$key => $value]);
         }
-        return new ProjectResource(Project::find($data['id']));
+        return new ProjectResource($project);
     }
     public function projectClose()
     {
@@ -41,9 +41,10 @@ class ProjectController extends Controller
         Project::findOrFail($data['id']);
         $project = Project::find($data['id']);
         $user = auth()->user();
-        if ($user['id'] !== $project['user_id']) die('Unauthorized');
-        if ($project['isClosed']) die('Project is already closed.');
-        Project::find($data['id'])->update(['isClosed' => true]);
-        return new ProjectResource(Project::find($data['id']));
+        if ($user['id'] !== $project->user_id) die('Unauthorized');
+        if ($project->isClosed) die('Project is already closed.');
+        $project->isClosed = true;
+        $project->save();
+        return new ProjectResource($project);
     }
 }

@@ -18,14 +18,16 @@ class TaskController extends Controller
         Project::findOrFail($data['project_id']);
         $project = Project::find($data['project_id']);
         $user = auth()->user();
-        if ($user['id'] !== $project['user_id']) die('Unauthorized');
-        if ($project['isClosed']) die('Cannot add task to closed project');
+        if ($user['id'] !== $project->user_id) die('Unauthorized');
+        if ($project->isClosed) die('Cannot add task to closed project');
 
-        $data['isCompleted'] = false;
+        $task = new Task();
+        $task->fill($data);
+        $task->isCompleted = false;
         $user = auth()->user();
-        $data['user_id'] = $user->id;
+        $task->user_id = $user->id;
 
-        $task = Task::create($data);
+        $task->save();
         return new TaskResource($task);
     }
     public function taskUpdate() 
@@ -34,8 +36,9 @@ class TaskController extends Controller
         Task::findOrFail($data['id']);
         $task = Task::find($data['id']);
         $user = auth()->user();
-        if ($user['id'] !== $task['user_id']) die('Unauthorized');
-        Task::find($data['id'])->update(['name' => $data['name']]);
+        if ($user['id'] !== $task->user_id) die('Unauthorized');
+        $task->name = $data['name'];
+        $task->save();
     }
     public function taskComplete() 
     {
@@ -43,11 +46,12 @@ class TaskController extends Controller
         Task::findOrFail($data['id']);
         $task = Task::find($data['id']);
         $user = auth()->user();
-        if ($user['id'] !== $task['user_id']) die('Unauthorized');
-        if ($task['isCompleted']) {
-            Task::find($data['id'])->update(['isCompleted' => false]);
+        if ($user['id'] !== $task->user_id) die('Unauthorized');
+        if ($task->isCompleted) {
+            $task->isCompleted = false;
         } else {
-            Task::find($data['id'])->update(['isCompleted' => true]);
+            $task->isCompleted = true;
         }
+        $task->save();
     }
 }
