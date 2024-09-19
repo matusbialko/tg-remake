@@ -1,3 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Entry
+
+# Model Form Field configuration
+form: $/app/entries/models/entry/fields.yaml
+
+# Model Class name
 modelClass: App\Entries\Models\Entry
 
-form: $/app/entries/models/entry/fields.yaml
+# Default redirect location
+defaultRedirect: app/entries/entries
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: app/entries/entries/update/:id
+    redirectClose: app/entries/entries
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: app/entries/entries
+    redirectClose: app/entries/entries
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

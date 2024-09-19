@@ -1,21 +1,35 @@
 <?php namespace App\Entries\Controllers;
 
-use Backend\Classes\Controller;
 use BackendMenu;
-use App\Entries\Models\Entry;
+use Backend\Classes\Controller;
 
+/**
+ * Entries Back-end Controller
+ */
 class Entries extends Controller
 {
-    public $implement = ['Backend\Behaviors\ListController', 'Backend\Behaviors\FormController'];
+    /**
+     * @var array Behaviors that are implemented by this controller.
+     */
+    public $implement = [
+        'Backend.Behaviors.FormController',
+        'Backend.Behaviors.ListController'
+    ];
 
-    public $listConfig = 'config_list.yaml';
+    /**
+     * @var string Configuration file for the `FormController` behavior.
+     */
     public $formConfig = 'config_form.yaml';
+
+    /**
+     * @var string Configuration file for the `ListController` behavior.
+     */
+    public $listConfig = 'config_list.yaml';
 
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('App.Entry', 'entry', 'entries');
+
+        BackendMenu::setContext('App.Entries', 'entries', 'entries');
     }
 }
-
-?>

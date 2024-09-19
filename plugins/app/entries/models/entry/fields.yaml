@@ -8,10 +8,10 @@ fields:
         type: number
     time_start:
         label: Time from
-        type: timestamp
+        type: datepicker
     time_end:
         label: Time to
-        type: timestamp
+        type: datepicker
     tracked_time:
-        label: tracked_time
-        type: string
+        label: Tracked time
+        type: text

@@ -6,3 +6,6 @@ fields:
     name:
         label: Name
         type: text
+    project_id:
+        label: Project ID
+        type: number
