@@ -21,7 +21,9 @@ class Project extends Model
     ];
 
     public $belongsTo = [
-        'user' => ['RainLab\User\Models\User']
+        'user' => ['RainLab\User\Models\User'],
+        'customer' => ['RainLab\User\Models\User'],
+        'project_manager' => ['RainLab\User\Models\User']
     ];
 
     public $hasMany = [

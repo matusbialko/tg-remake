@@ -11,8 +11,8 @@ class CreateProjectsTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->string('name');
-            $table->string('customer');
-            $table->string('project_manager');
+            $table->string('customer_id');
+            $table->string('project_manager_id');
             $table->string('list');
             $table->boolean('is_closed');
             $table->timestamps();

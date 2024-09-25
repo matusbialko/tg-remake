@@ -42,6 +42,6 @@ class EntryController extends Controller
         if (!$entry['is_active']) throw new Exception('Entry is already finished');
         $entry->time_end = now();
         $entry->save();
-        return 'Entry finished';
+        return EntryResource::make($entry);
     }
 }

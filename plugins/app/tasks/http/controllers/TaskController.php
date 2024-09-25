@@ -40,6 +40,7 @@ class TaskController extends Controller
         if ($user['id'] !== $task->user_id) throw new Exception('Unauthorized');
         $task->name = $data['name'];
         $task->save();
+        return TaskResource::make($task);
     }
     public function taskComplete() 
     {
@@ -54,5 +55,6 @@ class TaskController extends Controller
             $task->is_completed = true;
         }
         $task->save();
+        return TaskResource::make($task);
     }
 }
