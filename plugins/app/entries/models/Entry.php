@@ -18,7 +18,7 @@ class Entry extends Model
         'time_end',
         'tracked_time',
         'task_id',
-        'isActive'
+        'is_active'
     ];
 
     public $rules = [

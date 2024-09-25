@@ -27,7 +27,7 @@ columns:
         label: Tracked Time
         sortable: true
         type: text
-    isActive:
+    is_active:
         label: Is active
         sortable: true
         type: switch

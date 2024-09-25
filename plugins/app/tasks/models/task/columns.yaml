@@ -23,6 +23,6 @@ columns:
         label: Total time
         sortable: true
         type: text
-    isCompleted:
+    is_completed:
         label: Completed
         type: switch

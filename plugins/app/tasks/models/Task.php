@@ -16,7 +16,7 @@ class Task extends Model
         'project_id',
         'name',
         'total_time',
-        'isCompleted'
+        'is_completed'
     ];
 
     public $belongsTo = [

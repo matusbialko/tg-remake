@@ -17,7 +17,7 @@ class ProjectController extends Controller
         $data = request()->all();
         $project = new Project();
         $project->fill($data);
-        $project->isClosed = false;
+        $project->is_closed = false;
         $user = auth()->user();
         $project->user_id = $user->id;
         $project->save();
@@ -30,7 +30,7 @@ class ProjectController extends Controller
         $project = Project::find($data['id']);
         $user = auth()->user();
         if ($user['id'] !== $project->user_id) throw new Exception('Unauthorized');
-        if ($project->isClosed) throw new Exception('Cannot edit closed project.');
+        if ($project->is_closed) throw new Exception('Cannot edit closed project.');
         foreach($data as $key => $value) {
             if ($key != 'id') $project->update([$key => $value]);
         }
@@ -43,8 +43,8 @@ class ProjectController extends Controller
         $project = Project::find($data['id']);
         $user = auth()->user();
         if ($user['id'] !== $project->user_id) throw new Exception('Unauthorized');
-        if ($project->isClosed) throw new Exception('Project is already closed.');
-        $project->isClosed = true;
+        if ($project->is_closed) throw new Exception('Project is already closed.');
+        $project->is_closed = true;
         $project->save();
         return ProjectResource::make($project);
     }

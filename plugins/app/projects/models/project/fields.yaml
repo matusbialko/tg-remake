@@ -10,7 +10,7 @@ fields:
         label: Customer
         type: recordfinder
         list: ~/plugins/app/projects/models/project/columns.yaml
-    projectManager:
+    project_manager:
         label: Project manager
         type: recordfinder
         list: ~/plugins/app/projects/models/project/columns.yaml

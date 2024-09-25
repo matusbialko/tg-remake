@@ -12,7 +12,7 @@ class CreateTasksTable extends Migration
             $table->integer('user_id');
             $table->integer('project_id');
             $table->string('name');
-            $table->boolean('isCompleted');
+            $table->boolean('is_completed');
             $table->string('total_time')->default('00:00:00');
             $table->timestamps();
         });

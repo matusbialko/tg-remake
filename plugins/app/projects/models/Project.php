@@ -14,9 +14,9 @@ class Project extends Model
     protected $fillable = [
         'user_id',
         'name',
-        'isClosed',
+        'is_closed',
         'customer',
-        'projectManager',
+        'project_manager',
         'list'
     ];
 
@@ -31,7 +31,7 @@ class Project extends Model
     public $rules = [
         'name' => 'required|min:1',
         'customer' => 'required|min:1',
-        'projectManager' => 'required|min:1',
+        'project_manager' => 'required|min:1',
         'list' => 'required|min:1'
     ];
 

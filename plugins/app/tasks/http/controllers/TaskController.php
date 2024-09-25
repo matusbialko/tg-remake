@@ -20,11 +20,11 @@ class TaskController extends Controller
         $project = Project::find($data['project_id']);
         $user = auth()->user();
         if ($user['id'] !== $project->user_id) throw new Exception('Unauthorized');
-        if ($project->isClosed) throw new Exception('Cannot add task to closed project');
+        if ($project->is_closed) throw new Exception('Cannot add task to closed project');
 
         $task = new Task();
         $task->fill($data);
-        $task->isCompleted = false;
+        $task->is_completed = false;
         $user = auth()->user();
         $task->user_id = $user->id;
 
@@ -48,10 +48,10 @@ class TaskController extends Controller
         $task = Task::find($data['id']);
         $user = auth()->user();
         if ($user['id'] !== $task->user_id) throw new Exception('Unauthorized');
-        if ($task->isCompleted) {
-            $task->isCompleted = false;
+        if ($task->is_completed) {
+            $task->is_completed = false;
         } else {
-            $task->isCompleted = true;
+            $task->is_completed = true;
         }
         $task->save();
     }

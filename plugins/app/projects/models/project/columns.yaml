@@ -19,7 +19,7 @@ columns:
         label: Customer
         sortable: true
         type: text
-    projectManager:
+    project_manager:
         label: Project manager
         sortable: true
         type: text
@@ -27,7 +27,7 @@ columns:
         label: List
         sortable: true
         type: text
-    isClosed:
+    is_closed:
         label: Closed
         type: switch
     partial_test:

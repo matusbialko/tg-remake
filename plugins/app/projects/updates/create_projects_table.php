@@ -12,9 +12,9 @@ class CreateProjectsTable extends Migration
             $table->integer('user_id');
             $table->string('name');
             $table->string('customer');
-            $table->string('projectManager');
+            $table->string('project_manager');
             $table->string('list');
-            $table->boolean('isClosed');
+            $table->boolean('is_closed');
             $table->timestamps();
         });
     }

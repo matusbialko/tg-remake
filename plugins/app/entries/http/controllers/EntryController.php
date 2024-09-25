@@ -39,7 +39,7 @@ class EntryController extends Controller
         $entry = Entry::find($data['id']);
         $user = auth()->user();
         if ($user['id'] !== $entry['user_id']) throw new Exception('Unauthorized');
-        if (!$entry['isActive']) throw new Exception('Entry is already finished');
+        if (!$entry['is_active']) throw new Exception('Entry is already finished');
         $entry->time_end = now();
         $entry->save();
         return 'Entry finished';

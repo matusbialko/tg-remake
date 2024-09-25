@@ -10,10 +10,10 @@ class ProjectResource extends JsonResource {
             "id" => $this->id,
             "name" => $this->name,
             "customer" => $this->customer,
-            "projectManager" => $this->projectManager,
+            "project_manager" => $this->project_manager,
             "list" => $this->list,
             "user" => new UserResource($this->user),
-            "isClosed" => $this->isClosed,
+            "is_closed" => $this->is_closed,
         ];
     }
     

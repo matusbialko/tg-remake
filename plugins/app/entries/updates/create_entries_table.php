@@ -12,7 +12,7 @@ class CreateEntriesTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('task_id');
-            $table->boolean('isActive');
+            $table->boolean('is_active');
             $table->string('tracked_time')->default('00:00:00');
             $table->timestamp('time_start')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('time_end')->nullable()->default(null);
